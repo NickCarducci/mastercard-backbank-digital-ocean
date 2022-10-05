@@ -116,11 +116,16 @@ function UseDependency() {
 
 const app = express();
 const port = 8080;
+app.get('/', (req, res) => {
+
+    res.send("shove it")
+});
 app.post('/', (req, res) => {
 
     if (request.method === "OPTIONS")
-        return `preflight response for POST`
-    return await noException(request, env);
+        return res.send(`preflight response for POST`)
+    //await noException(request, env);
+    res.send(noException(request, env));
 });
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+app.listen(port, () => console.log(`localhost:${port}`));
 
