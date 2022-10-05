@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "private": true,
   "name": "mastercard-backbank-digital-ocean",
   "version": "1.0.0",

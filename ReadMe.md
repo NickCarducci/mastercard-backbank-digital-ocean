@@ -146,11 +146,13 @@ a. `sudo apt install node-babel7`
 
 (4) `node_modules/.bin/pm2 start src/index.mjs`
 
-c. `node_modules/.bin/pm2 startup`
+~~c. `node_modules/.bin/pm2 startup`~~
 
-`node_modules/.bin/pm2 save`
+`node_modules/.bin/pm2 save` (4: `Saving current process list... Successfully saved in /home/honcho/.pm2/dump.pm2`)
 
-`sudo env PATH=$PATH:/usr/bin /home/honcho/mastercard-backbank-digital-ocean/node_modules/pm2/bin/pm2 startup systemd -u honcho --hp /home/honcho`
+~~`sudo env PATH=$PATH:/usr/bin /home/honcho/mastercard-backbank-digital-ocean/node_modules/pm2/bin/pm2 startup systemd -u honcho --hp /home/honcho`
 
-b. `node_modules/.bin/pm2 list`
+b. `node_modules/.bin/pm2 list`~~
 ~~`node_modules pm2 list`~~
+
+5. `node_modules/.bin/pm2 logs`
