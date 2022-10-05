@@ -120,7 +120,7 @@ vi. `service ssh restart`
 `sudo apt install node-babel-cli`
 `sudo apt install babel-cli`~~
 
-a. `sudo apt install node-babel7`
+a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 [Do we need npm and node for pm2](https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps)?
 
@@ -138,7 +138,7 @@ a. `sudo apt install node-babel7`
 
 ~~[droplet .env](https://stackoverflow.com/questions/71367040/environmental-variables-in-digital-ocean-droplets)~~
 
-~~`export PATH=$PATH:/node_modules/.bin`~~
+~~`export PATH=$PATH:node_modules/.bin`~~ `PATH=$(getconf PATH)` `printenv`
 
 ~~`pm2 startup .`
 
@@ -156,3 +156,5 @@ b. `node_modules/.bin/pm2 list`~~
 ~~`node_modules pm2 list`~~
 
 5. `node_modules/.bin/pm2 logs`
+
+6. ~~`pm2 stop index` `pm2 delete index` `pm2 save --force`~~
