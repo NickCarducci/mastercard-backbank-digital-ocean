@@ -11,7 +11,8 @@
   "license": "",
   "dependencies": {
     "express": "^4.18.1",
-    "mastercard-locations": "^1.0.3"
+    "mastercard-locations": "^1.0.3",
+    "pm2": "^5.2.0"
   },
   "false": {
     "@rollup/plugin-commonjs": "^17.0.0",
