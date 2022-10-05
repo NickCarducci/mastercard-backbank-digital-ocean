@@ -77,3 +77,13 @@ PasswordAuthentication no to PasswordAuthentication yes
 `sudo apt-get install nodejs`
 
 [Gatsby's instructions on cloning into pwd /home/honcho](https://www.gatsbyjs.com/docs/deploying-to-digitalocean-droplet/)
+
+`git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git`
+
+`cd mastercard-backbank-digital-ocean`
+
+~~`sudo apt-get install npm`~~
+
+~~`sudo npm install`~~
+
+try to save on size by uploading `node_modules` and `package-lock.json`
