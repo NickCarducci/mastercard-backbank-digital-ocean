@@ -109,7 +109,7 @@ iv. `cntl+O` + `enter/return` + `yes` (save) + `cntl+X`
 
 v. [uncomment PubKeyAuthentication yes and ](https://bendurham.dev/posts/enabling-ssh-keys-digital-ocean)
 
-vi. `service ssh restart`
+vi. `service ssh restart` (*** System restart required ***)
 
 2. `cd mastercard-backbank-digital-ocean`
 
@@ -140,6 +140,11 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 (`export PATH=$PATH:node_modules/.bin` `PATH=$(getconf PATH)` `printenv`)
 
+> export PATH=$PATH:node_modules/.bin && pm2 start ecosystem.config.cjs
+> export PATH=$PATH:node_modules/.bin && pm2 save
+> export PATH=$PATH:node_modules/.bin && pm2 logs --lines 500
+> export PATH=$PATH:node_modules/.bin && pm2 kill && rm -rf ~/.pm2 
+
 ~~`pm2 startup .`~~
 
 ~~`node_modules/.bin/pm2 startup .`~~
@@ -163,4 +168,6 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 [`delete node_modules after pm2 save`](https://stackoverflow.com/questions/52683376/pm2-deleted-process-runs-on-startup)
 
->"a little [relief,] competition ([police/tech](https://commie.dev))]" - RG
+>"a little [[relief,](https://politics.stackexchange.com/questions/76012/isnt-the-optimal-tax-rate-more-dependent-on-technical-inefficiencies-including)] competition ([police/tech](https://commie.dev))]" - [RG](https://www.youtube.com/watch?v=pafY6sZt0FE)
+
+`~/.ssh --recursively`
