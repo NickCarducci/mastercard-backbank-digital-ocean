@@ -1,14 +1,10 @@
 {
-    "apps": [
-        {
-            "name": "mastercard-backbank-digital-ocean",
-            "exec_interpreter": "babel-node",
-            "script": "index.mjs",
-            "merge_logs": true,
-            "cwd": "./src",
-            "env": {
-                "NODE_ENV": "production"
-            }
-        }
-    ]
+    "name": "mastercard-backbank-digital-ocean",
+    "interpreter": "babel-node",
+    "script": "index.mjs",
+    "merge_logs": true,
+    "cwd": "./src",
+    "env": {
+        "NODE_ENV": "production"
+    }
 }
