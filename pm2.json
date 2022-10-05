@@ -3,7 +3,7 @@
         {
             "name": "mastercard-backbank-digital-ocean",
             "exec_interpreter": "babel-node",
-            "script": "index.js",
+            "script": "index.mjs",
             "merge_logs": true,
             "cwd": "./src",
             "env": {

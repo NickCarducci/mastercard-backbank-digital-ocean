@@ -3,9 +3,9 @@
   "name": "mastercard-backbank-digital-ocean",
   "version": "1.0.0",
   "description": "debit for vau.money",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "start": "babel-node src/index.js"
+    "start": "babel-node src/index.mjs"
   },
   "author": "Nick Carducci nmcarducci@gmail.com",
   "license": "",

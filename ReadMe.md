@@ -78,7 +78,7 @@ PasswordAuthentication no to PasswordAuthentication yes
 
 [Gatsby's instructions on cloning into pwd /home/honcho](https://www.gatsbyjs.com/docs/deploying-to-digitalocean-droplet/)~~
 
-`git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git`
+3. `git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git`
 
 `cd mastercard-backbank-digital-ocean`
 
@@ -142,8 +142,8 @@ a. `sudo apt install node-babel7`
 
 ~~`pm2 startup .`
 
-`node_modules/.bin/pm2 startup .`
-`node_modules/.bin/pm2 startup src/index.js`~~
+`node_modules/.bin/pm2 startup .`~~
+`node_modules/.bin/pm2 start src/index.js`
 
 c. `node_modules/.bin/pm2 startup`
 
