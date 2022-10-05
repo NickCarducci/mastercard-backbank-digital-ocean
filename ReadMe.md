@@ -138,13 +138,13 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 ~~[droplet .env](https://stackoverflow.com/questions/71367040/environmental-variables-in-digital-ocean-droplets)~~
 
-~~`export PATH=$PATH:node_modules/.bin`~~ `PATH=$(getconf PATH)` `printenv`
+(`export PATH=$PATH:node_modules/.bin` `PATH=$(getconf PATH)` `printenv`)
 
 ~~`pm2 startup .`
 
 `node_modules/.bin/pm2 startup .`~~
 
-(4) `node_modules/.bin/pm2 start ecosystem.config.cjs` ~~`src/index.mjs`~~
+(4) ~~`node_modules/.bin/`~~ `pm2 start ecosystem.config.cjs` ~~`src/index.mjs`~~
 
 ~~c. `node_modules/.bin/pm2 startup`~~
 
@@ -155,6 +155,6 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 b. `node_modules/.bin/pm2 list`~~
 ~~`node_modules pm2 list`~~
 
-5. `node_modules/.bin/pm2 logs`
+5. `node_modules/.bin/`(`pm2 logs`)
 
 6. ~~`pm2 stop index` `pm2 delete index` `pm2 save --force`~~
