@@ -158,3 +158,9 @@ b. `node_modules/.bin/pm2 list`~~
 5. `node_modules/.bin/`(`pm2 logs`)
 
 6. ~~`pm2 stop index` `pm2 delete index` `pm2 save --force`~~
+
+> cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && pm2 start ecosystem.config.cjs && pm2 logs --lines 350
+
+[`delete node_modules after pm2 save`](https://stackoverflow.com/questions/52683376/pm2-deleted-process-runs-on-startup)
+
+>"a little [relief,] competition ([police/tech](https://commie.dev))]" - RG

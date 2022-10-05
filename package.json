@@ -6,6 +6,7 @@
   "description": "debit for vau.money",
   "main": "index.mjs",
   "scripts": {
+    "dev": "node_modules/.bin/babel-node src/index.mjs",
     "start": "babel-node src/index.mjs"
   },
   "author": "Nick Carducci nmcarducci@gmail.com",
