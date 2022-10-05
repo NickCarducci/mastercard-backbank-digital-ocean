@@ -66,15 +66,15 @@ PasswordAuthentication no to PasswordAuthentication yes
 
 `mkdir /home/honcho/.ssh`
 
-~~`sudo mv /root/.ssh/authorized_keys /home/honcho/.ssh/` [use _](https://www.vultr.com/docs/using-your-ssh-key-to-login-to-non-root-users/)
+~~`sudo mv /root/.ssh/authorized_keys /home/honcho/.ssh/` [use _](https://www.vultr.com/docs/using-your-ssh-key-to-login-to-non-root-users/)~~
 
-`sudo chown -R honcho:honcho /home/honcho/`[~~`.ssh`~~](https://shandou.medium.com/testing-out-digitalocean-droplet-1-steps-for-ssh-into-droplet-as-non-root-user-with-sudo-access-c2a7a5229cd6)~~
+`sudo chown -R honcho:honcho /home/honcho/`~~[`.ssh`](https://shandou.medium.com/testing-out-digitalocean-droplet-1-steps-for-ssh-into-droplet-as-non-root-user-with-sudo-access-c2a7a5229cd6)~~
 
 ~~`ssh honcho@142.93.216`~~
 
 `sudo apt-get update`
 
-`sudo apt-get install nodejs`
+~~`sudo apt-get install nodejs`
 
 [Gatsby's instructions on cloning into pwd /home/honcho](https://www.gatsbyjs.com/docs/deploying-to-digitalocean-droplet/)~~
 
