@@ -143,7 +143,8 @@ a. `sudo apt install node-babel7`
 ~~`pm2 startup .`
 
 `node_modules/.bin/pm2 startup .`~~
-`node_modules/.bin/pm2 start src/index.js`
+
+(4) `node_modules/.bin/pm2 start src/index.mjs`
 
 c. `node_modules/.bin/pm2 startup`
 
