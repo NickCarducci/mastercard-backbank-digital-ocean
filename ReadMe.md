@@ -144,7 +144,7 @@ a. `sudo apt install node-babel7`
 
 `node_modules/.bin/pm2 startup .`~~
 
-(4) `node_modules/.bin/pm2 start src/index.mjs`
+(4) `node_modules/.bin/pm2 start ecosystem.config.cjs` ~~`src/index.mjs`~~
 
 ~~c. `node_modules/.bin/pm2 startup`~~
 
