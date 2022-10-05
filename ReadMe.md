@@ -115,10 +115,10 @@ vi. `service ssh restart`
 
 # [How to start a package.json script in pm2](https://stackoverflow.com/questions/46008665/how-to-start-a-package-json-script-in-pm2)
 
-~~`pm2.json` and `pm2 start pm2.json`
+~~`pm2.json` and `pm2 start pm2.json`~~
 
-`sudo apt install node-babel-cli`
-`sudo apt install babel-cli`~~
+~~`sudo apt install node-babel-cli`~~
+~~`sudo apt install babel-cli`~~
 
 a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
@@ -140,9 +140,9 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 (`export PATH=$PATH:node_modules/.bin` `PATH=$(getconf PATH)` `printenv`)
 
-~~`pm2 startup .`
+~~`pm2 startup .`~~
 
-`node_modules/.bin/pm2 startup .`~~
+~~`node_modules/.bin/pm2 startup .`~~
 
 (4) ~~`node_modules/.bin/`~~ `pm2 start ecosystem.config.cjs` ~~`src/index.mjs`~~
 
@@ -150,9 +150,9 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 `node_modules/.bin/pm2 save` (4: `Saving current process list... Successfully saved in /home/honcho/.pm2/dump.pm2`)
 
-~~`sudo env PATH=$PATH:/usr/bin /home/honcho/mastercard-backbank-digital-ocean/node_modules/pm2/bin/pm2 startup systemd -u honcho --hp /home/honcho`
+~~`sudo env PATH=$PATH:/usr/bin /home/honcho/mastercard-backbank-digital-ocean/node_modules/pm2/bin/pm2 startup systemd -u honcho --hp /home/honcho`~~
 
-b. `node_modules/.bin/pm2 list`~~
+~~b. `node_modules/.bin/pm2 list`~~
 ~~`node_modules pm2 list`~~
 
 5. `node_modules/.bin/`(`pm2 logs`)
