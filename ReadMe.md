@@ -144,6 +144,7 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 > export PATH=$PATH:node_modules/.bin && pm2 save
 > export PATH=$PATH:node_modules/.bin && pm2 logs --lines 500
 > export PATH=$PATH:node_modules/.bin && pm2 kill && rm -rf ~/.pm2 
+> export PATH=$PATH:node_modules/.bin && pm2 restart ecosystem.config.cjs
 
 ~~`pm2 startup .`~~
 
@@ -171,3 +172,5 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 >"a little [[relief,](https://politics.stackexchange.com/questions/76012/isnt-the-optimal-tax-rate-more-dependent-on-technical-inefficiencies-including)] competition ([police/tech](https://commie.dev))]" - [RG](https://www.youtube.com/watch?v=pafY6sZt0FE)
 
 `~/.ssh --recursively`
+
+### [Using transpilers with pm2](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2)

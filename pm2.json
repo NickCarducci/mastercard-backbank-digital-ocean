@@ -4,6 +4,9 @@
     "script": "index.mjs",
     "merge_logs": true,
     "cwd": "./src",
+    "env_development": {
+      "NODE_ENV": "development"
+    },
     "env": {
         "NODE_ENV": "production"
     }
