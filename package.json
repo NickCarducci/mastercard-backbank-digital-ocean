@@ -4,7 +4,7 @@
   "name": "mastercard-backbank-digital-ocean",
   "version": "1.0.0",
   "description": "debit for vau.money",
-  "main": "index.mjs",
+  "main": "ecosystem.config.cjs",
   "scripts": {
     "start": ""
   },
