@@ -1,5 +1,5 @@
-import locations from 'mastercard-locations';
-import express from 'express';
+const locations = require('mastercard-locations');
+const express = require('express');
 
 async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));

@@ -1,4 +1,4 @@
-const app = require("./src/index.mjs");
+const app = require("./src/index.js");
 //ecosystem.config.cjs can require this (i.e. ex-"Must use import to load ES Module")
 module.exports = () => {
   return {
