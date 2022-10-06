@@ -1,10 +1,10 @@
-const app = require("./src/index.js");
+//const app = require("./src/index.js");
 //ecosystem.config.cjs can require this (i.e. ex-"Must use import to load ES Module")
-module.exports = function app() {
+module.exports = () => {
   return {
     "name": "mastercard-backbank-digital-ocean",
     "interpreter": "node",
-    "script": app,
+    "script": "index.js",
     "merge_logs": true,
     "cwd": "./src",
     "env_development": {
