@@ -178,3 +178,13 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 ### [Using transpilers with pm2](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2)
 
 [(tag batches)](https://docs.digitalocean.com/products/droplets/how-to/tag/)
+
+~~`pm2 connection dynamic port`~~
+
+~~pm2 ssh utc dynamic port`~~
+
+~~[Uncomplicated Firewall (ufw)](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-20-04)~~
+
+~~[How to Configure Firewall Rules](https://docs.digitalocean.com/products/networking/firewalls/how-to/configure-rules/)~~
+
+Use [spaces]](https://www.easydeploy.io/blog/setting-cors-mechanism-digital-ocean-servers/) for request.header.origin rules and allow headers, cors

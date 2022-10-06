@@ -7,10 +7,10 @@ module.exports = () => {
     "exec": "index.js",
     "merge_logs": true,
     "cwd": "./src",
-    "env_development": {
+    "env": {
       "NODE_ENV": "development"
     },
-    "env": {
+    "env_production": {
       "NODE_ENV": "production"
     }
   }
