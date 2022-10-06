@@ -1,4 +1,4 @@
-import app from "index.mjs";
+const app = require("./index.mjs");
 //ecosystem.config.cjs can require this (i.e. ex-"Must use import to load ES Module")
 export default {
   "name": "mastercard-backbank-digital-ocean",
