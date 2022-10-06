@@ -165,7 +165,9 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 6. ~~`pm2 stop index` `pm2 delete index` `pm2 save --force`~~
 
-> cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && pm2 start ecosystem.config.cjs && pm2 logs --lines 350
+> cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && pm2 start ~~ecosystem.config.cjs~~ && pm2 logs --lines 350
+
+> cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && pm2 start src/index.js && pm2 logs --lines 150
 
 [`delete node_modules after pm2 save`](https://stackoverflow.com/questions/52683376/pm2-deleted-process-runs-on-startup)
 
