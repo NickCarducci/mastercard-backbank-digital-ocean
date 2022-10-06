@@ -188,3 +188,83 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 ~~[How to Configure Firewall Rules](https://docs.digitalocean.com/products/networking/firewalls/how-to/configure-rules/)~~
 
 Use [spaces]](https://www.easydeploy.io/blog/setting-cors-mechanism-digital-ocean-servers/) for request.header.origin rules and allow headers, cors
+
+[Forward  ports: How To Install Nginx on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
+
+i. `sudo apt update && sudo apt install nginx && sudo ufw app list`
+
+ii. `sudo ufw allow 'Nginx HTTPS' && sudo ufw status && systemctl status nginx`
+
+iii. `sudo mkdir -p /var/www/vault-co.in/html`
+
+iv. `sudo chown -R $USER:$USER /var/www/vault-co.in/html && sudo chmod -R 755 /var/www/vault-co.in`
+
+v. `sudo nano /var/www/vault-co.in/html/index.html`
+
+````
+<html>
+    <head>
+        <title>Welcome to vault-co.in's</title>
+    </head>
+    <body>
+        <h1>domain server block. please visit vau.money.</h1>
+    </body>
+</html>
+````
+vi. `sudo nano /etc/nginx/sites-available/vault-co.in`
+
+~~````
+server {
+        listen 80;
+        listen [::]:80;
+
+        listen 443;
+        listen [::]:8080;
+
+        root /var/www/vault-co.in/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name vault-co.in www.vault-co.in;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+````~~
+````
+server {
+        location ~ {
+                proxy_pass https://vault-co.in:8080;
+        }
+
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/vault-co.in/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name vault-co.in www.vault-co.in;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+````
+vii. `sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/`
+
+viii. `sudo nano /etc/nginx/nginx.conf`
+
+>uncomment `server_names_hash_bucket_size 64;`
+
+ix. `sudo nginx -t`
+
+>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+>nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+x. `sudo systemctl restart nginx`
+
+xi. [`sudo apt install certbot python3-certbot-nginx`](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+
+xii. `sudo certbot --nginx -d vault-co.in -d www.vault-co.in`
+
+> A www host
