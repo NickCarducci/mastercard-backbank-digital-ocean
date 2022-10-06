@@ -176,3 +176,5 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 `~/.ssh --recursively`
 
 ### [Using transpilers with pm2](https://pm2.keymetrics.io/docs/tutorials/using-transpilers-with-pm2)
+
+[(tag batches)](https://docs.digitalocean.com/products/droplets/how-to/tag/)
