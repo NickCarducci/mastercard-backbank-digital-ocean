@@ -1,6 +1,6 @@
 {
     "name": "mastercard-backbank-digital-ocean",
-    "interpreter": "node_modules/.bin/babel-node",
+    "interpreter": "node",
     "script": "index.mjs",
     "merge_logs": true,
     "cwd": "./src",
