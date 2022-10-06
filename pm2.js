@@ -4,7 +4,7 @@ module.exports = () => {
   return {
     "name": "mastercard-backbank-digital-ocean",
     "interpreter": "node",
-    "script": "./index.js",
+    "exec": "index.js",
     "merge_logs": true,
     "cwd": "./src",
     "env_development": {
