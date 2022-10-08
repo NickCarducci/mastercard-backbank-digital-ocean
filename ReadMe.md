@@ -213,41 +213,45 @@ v. `sudo nano /var/www/vault-co.in/html/index.html`
 ````
 vi. `sudo nano /etc/nginx/sites-available/vault-co.in`
 
-~~````
-server {
-        listen 80;
-        listen [::]:80;
+`certbot` xii. will make `/etc/nginx/sites-available/vault-co.in`, too
 
-        listen 443;
-        listen [::]:8080;
+>When the [proxy_pass](https://serverfault.com/questions/849989/nginx-proxy-pass-wildcard-config) contains no path component, nginx will append the normalized URI of the request to the host part of proxy_pass directive.
 
-        root /var/www/vault-co.in/html;
-        index index.html index.htm index.nginx-debian.html;
-
-        server_name vault-co.in www.vault-co.in;
-
-        location / {
-                try_files $uri $uri/ =404;
-        }
-}
-````~~
 ````
 server {
-        location ~ {
-                proxy_pass https://vault-co.in:8080;
-        }
+    if ($host = www.vault-co.in) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = vault-co.in) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
 
         listen 80;
         listen [::]:80;
 
-        root /var/www/vault-co.in/html;
+        root /var/www/vault-co.in/html; # absolute path nginx vars
         index index.html index.htm index.nginx-debian.html;
+
+        location ~ {
+                proxy_pass http://142.93.58.216:8080;
+                proxy_redirect https://142.93.58.216:8080/ https://$host;
+        }
 
         server_name vault-co.in www.vault-co.in;
 
         location / {
                 try_files $uri $uri/ =404;
         }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/vault-co.in/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/vault-co.in/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    return 404; # managed by Certbot
 }
 ````
 vii. `sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/`
@@ -268,3 +272,19 @@ xi. [`sudo apt install certbot python3-certbot-nginx`](https://www.digitalocean.
 xii. `sudo certbot --nginx -d vault-co.in -d www.vault-co.in`
 
 > A www host
+
+`systemctl status nginx`
+
+`systemctl start nginx`
+
+`sudo journalctl -xeu nginx.service`
+
+`systemctl restart nginx && nginx -t`
+
+`ps auxf | grep nginx`
+
+`sudo chown -R www-data:www-data /var/www/vault-co.in`
+
+[API-GATEWAY  nginx](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1)
+
+exclusion cheat fraud [chance](https://stackoverflow.com/a/13909534/11711280)
