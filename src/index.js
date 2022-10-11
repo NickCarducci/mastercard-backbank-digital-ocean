@@ -135,7 +135,7 @@ app.use((_req, _res, next) => {
     next()
 }).get('/', (req, res) => res.send(200, "shove it"))
     //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
-    .options("/", (req, res) => { })
+    .options("/", (req, res) => { res.send(200, "ok") })
     .post('/', (req, res) => {
         //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
         res.send(200, "ok")
