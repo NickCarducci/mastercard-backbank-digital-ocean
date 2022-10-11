@@ -351,3 +351,19 @@ sudo ufw disable
 `sudo ufw enable`
 
 [`sudo ufw allow 22/tcp`](https://www.digitalocean.com/community/questions/sudo-ufw-status-return-inactive)
+
+`sudo ufw default deny`
+
+`sudo ufw show added`
+
+> [`sudo ufw disable && sudo ufw enable`](https://wiki.ubuntu.com/UncomplicatedFirewall) After modifying any of the above files, activate the new settings with.
+
+not secular, orthodox
+
+Are good people not normal? Is that why not many run, and if they do, they aren't?
+
+now all that is left to do is everyone smd
+
+GS "merger fees" + Is the capitalization of a bank either more dependent on the required reserve ratio or central bank funds rate? The banks are capitalized by good will value, not concurrentable value. Should we continue paying back debts rather than claim the public good will right to own is surrendered and/or loitered?
+
+A natural normal
