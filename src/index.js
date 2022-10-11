@@ -117,29 +117,28 @@ function UseDependency() {
 const app = express();
 const port = 8080;
 //http://johnzhang.io/options-request-in-express
-app.use((_req, _res, next)=>{
-    var origin = req.headers.origin;
-    //var origin = req.get('origin');
-    var allowedOrigins = [
-        "https://sausage.saltbank.org",
-        "https://i7l8qe.csb.app",
-        "https://vau.money",
-        "https://jwi5k.csb.app",
-    ];
+var origin = req.headers.origin;
+//var origin = req.get('origin');
+var allowedOrigins = [
+    "https://sausage.saltbank.org",
+    "https://i7l8qe.csb.app",
+    "https://vau.money",
+    "https://jwi5k.csb.app",
+];
+app.use((_req, _res, next) => {
     if (allowedOrigins.indexOf(origin) === -1) return res.send(401, JSON.stringify(`{error:${"no access for this origin- " + origin}}`));
-    const dataHead = {
-        "Content-Type": "application/json"
-    };
-    res.header("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
-    res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+    //res.header("":_)
+    res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
+    res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+    res.set("Content-Type", "Application/JSON");
     //res.send(200,"ok")
     next()
-}).get('/', (req, res) => res.send(200,"shove it"))
-//https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
-    .options("/", (req, res) => {})
+}).get('/', (req, res) => res.send(200, "shove it"))
+    //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
+    //.options("/", (req, res) => { })
     .post('/', (req, res) => {
         //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
-        res.send(200,"ok")
+        res.send(200, "ok")
         //res.send(200, UseDependency());
     }).listen(port, () => console.log(`localhost:${port}`));
 
