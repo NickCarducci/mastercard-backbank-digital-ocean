@@ -132,7 +132,7 @@ app.use((_req, _res, next)=>next()).get('/', (req, res) => res.send(200,"shove i
         const dataHead = {
             "Content-Type": "application/json"
         };
-        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.send(200)
     })
