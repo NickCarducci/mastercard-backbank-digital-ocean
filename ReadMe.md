@@ -245,6 +245,7 @@ server {
 
 }
 ````
+# NGINX [directory](https://serverfault.com/a/527644/987831)
 
 `certbot` xii. will make `/etc/nginx/sites-available/vault-co.in`, too
 
