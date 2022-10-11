@@ -191,7 +191,11 @@ Use [spaces]](https://www.easydeploy.io/blog/setting-cors-mechanism-digital-ocea
 
 [Forward  ports: How To Install Nginx on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04)
 
+(`sudo apt remove nginx --purge`)
+
 i. `sudo apt update && sudo apt install nginx && sudo ufw app list`
+
+> sudo ufw enable
 
 ii. `sudo ufw allow 'Nginx HTTPS' && sudo ufw status && systemctl status nginx`
 
@@ -211,7 +215,36 @@ v. `sudo nano /var/www/vault-co.in/html/index.html`
     </body>
 </html>
 ````
+(`nginx -t -c /etc/nginx/nginx.conf`)
+
+(`sudo nano /lib/systemd/system/nginx.service`)
+
+(`sudo systemctl enable nginx.service`)
+
 vi. `sudo nano /etc/nginx/sites-available/vault-co.in`
+
+````
+server {
+
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/vault-co.in/html; # absolute path nginx vars
+        index index.html index.htm index.nginx-debian.html;
+
+        location ~ {
+                proxy_pass http://142.93.58.216:8080;
+                proxy_redirect https://142.93.58.216:8080/ https://$host;
+        }
+
+        server_name vault-co.in www.vault-co.in;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+}
+````
 
 `certbot` xii. will make `/etc/nginx/sites-available/vault-co.in`, too
 
@@ -271,7 +304,15 @@ xi. [`sudo apt install certbot python3-certbot-nginx`](https://www.digitalocean.
 
 xii. `sudo certbot --nginx -d vault-co.in -d www.vault-co.in`
 
+(kill -HUP `/var/run/nginx.pid`)
+
+([`sudo lsof -i:8080`](https://laracasts.com/discuss/channels/general-discussion/cant-restartreload-nginx-in-my-ubuntu-droplet))
+
+`sudo systemctl start nginx.service`
+
 > A www host
+
+## [(`sudo apt-get purge nginx nginx-common nginx-full`)](https://serverfault.com/questions/348165/i-accidentally-deleted-etc-nginx-reinstalling-nginx-wont-recover-it)
 
 `systemctl status nginx`
 
@@ -288,3 +329,11 @@ xii. `sudo certbot --nginx -d vault-co.in -d www.vault-co.in`
 [API-GATEWAY  nginx](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1)
 
 exclusion cheat fraud [chance](https://stackoverflow.com/a/13909534/11711280)
+
+# [Snapd](https://www.linode.com/docs/guides/enabling-https-using-certbot-with-nginx-on-ubuntu/)???
+
+sudo certbot --nginx -d vault-co.in -d www.vault-co.in
+
+vaumoney: root
+password: _
+sudo ufw disable
