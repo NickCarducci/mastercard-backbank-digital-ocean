@@ -117,9 +117,11 @@ function UseDependency() {
 const app = express();
 const port = 8080;
 //http://johnzhang.io/options-request-in-express
-app.get('/', (req, res) => res.send("shove it"))
-    .options("/", (req, res, next) => {
-        var origin = req.get('origin');
+app.use((_req, _res, next)=>next()).get('/', (req, res) => res.send(200,"shove it"))
+//https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
+    .options("/", (req, res) => {
+        var origin = req.headers.origin;
+        //var origin = req.get('origin');
         var allowedOrigins = [
             "https://sausage.saltbank.org",
             "https://i7l8qe.csb.app",
