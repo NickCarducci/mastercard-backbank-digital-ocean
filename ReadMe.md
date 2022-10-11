@@ -200,6 +200,8 @@ Use [spaces]](https://www.easydeploy.io/blog/setting-cors-mechanism-digital-ocea
 
 (`sudo apt remove nginx --purge`)
 
+(`sudo apt install && sudo apt autoremove`)
+
 i. `sudo apt update && sudo apt install nginx && sudo ufw app list`
 
 > sudo ufw enable
@@ -345,3 +347,7 @@ sudo certbot --nginx -d vault-co.in -d www.vault-co.in
 vaumoney: root
 password: _
 sudo ufw disable
+
+`sudo ufw enable`
+
+[`sudo ufw allow 22/tcp`](https://www.digitalocean.com/community/questions/sudo-ufw-status-return-inactive)
