@@ -112,7 +112,7 @@ function UseDependency() {
         output.push(value);
     }
     return out(output);
-}
+}//so called invitation
 
 const app = express();
 const port = 8080;
@@ -133,8 +133,8 @@ app.use((_req, _res, next)=>next()).get('/', (req, res) => res.send(200,"shove i
             "Content-Type": "application/json"
         };
         res.header("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.send(200)
+        res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+        res.send(200,"ok")
     })
     .post('/', (req, res) => {
         //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
