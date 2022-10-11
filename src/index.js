@@ -1,7 +1,7 @@
 const locations = require('mastercard-locations');
 const express = require('express');
 
-async function noException(req, env) {
+/*async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));
     // boot instance, if necessary //https://<worker-name>.<your-namespace>.workers.dev/
     //https://linc.sh/blog/durable-objects-in-production
@@ -17,12 +17,12 @@ async function noException(req, env) {
     var origin = urlObject.origin; // request.headers.get("Origin");
     //"no access for this origin: " + origin
     if (allowedOrigins.indexOf(origin) === -1) return JSON.stringify(`{error:${"no access for this origin- " + origin}}`);
-    const /*href = urlObject.searchParams.get("name"), */dataHead = {
+    const /*href = urlObject.searchParams.get("name"), * /dataHead = {
         "Content-Type": "application/json"
     };
 
     return UseDependency();
-}
+}*/
 
 function UseDependency() {
     // Script-Name: atm_locations
@@ -116,16 +116,27 @@ function UseDependency() {
 
 const app = express();
 const port = 8080;
-app.get('/', (req, res) => {
-
-    res.send("shove it")
+//http://johnzhang.io/options-request-in-express
+app.options("/",(req, res, next) => {
+    var allowedOrigins = [
+        "https://sausage.saltbank.org",
+        "https://i7l8qe.csb.app",
+        "https://vau.money",
+        "https://jwi5k.csb.app",
+    ];
+    if (allowedOrigins.indexOf(origin) === -1) return JSON.stringify(`{error:${"no access for this origin- " + origin}}`);
+    const dataHead = {
+        "Content-Type": "application/json"
+    };
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.send(200)
 });
+app.get('/', (req, res) => res.send("shove it"));
 app.post('/', (req, res) => {
+    //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
 
-    if (request.method === "OPTIONS")
-        return res.send(`preflight response for POST`)
-    //await noException(request, env);
-    res.send(noException(request, env));
+    res.send(UseDependency());
 });
 app.listen(port, () => console.log(`localhost:${port}`));
 
