@@ -135,8 +135,8 @@ app.options("/",(req, res, next) => {
 app.get('/', (req, res) => res.send("shove it"));
 app.post('/', (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
-
-    res.send(UseDependency());
+    //res.send(200,"ok")
+    res.send(200,UseDependency());
 });
 app.listen(port, () => console.log(`localhost:${port}`));
 
