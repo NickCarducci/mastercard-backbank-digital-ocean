@@ -125,17 +125,24 @@ var allowedOrigins = [
     "https://vau.money",
     "https://jwi5k.csb.app",
 ];
-app.use((_req, _res, next) => {
-    if (allowedOrigins.indexOf(origin) === -1) return res.send(401, JSON.stringify(`{error:${"no access for this origin- " + origin}}`));
+app/*.use((_req, _res, next) => {
+    if (allowedOrigins.indexOf(origin) === -1) return res.send(401, `{error:${"no access for this origin- " + origin}}`);
     //res.header("":_)
     res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
     res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
     res.set("Content-Type", "Application/JSON");
     //res.send(200,"ok")
     next()
-}).get('/', (req, res) => res.send(200, "shove it"))
+})*/.get('/', (req, res) => res.send(200, "shove it"))
     //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
-    .options("/", (req, res) => { res.send(200, "ok") })
+    .options("/", (req, res) => { 
+        if (allowedOrigins.indexOf(origin) === -1) return res.send(401, `{error:${"no access for this origin- " + origin}}`);
+        //res.header("":_)
+        res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
+        res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+        res.set("Content-Type", "Application/JSON");
+        //res.send(200,"ok")
+        res.sendStatus(204) })
     .post('/', (req, res) => {
         //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
         res.send(200, "ok")
