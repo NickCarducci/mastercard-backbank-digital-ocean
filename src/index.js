@@ -117,14 +117,15 @@ function UseDependency() {
 const app = express();
 const port = 8080;
 //http://johnzhang.io/options-request-in-express
-app.options("/",(req, res, next) => {
+app.options("/", (req, res, next) => {
+    var origin = req.get('origin');
     var allowedOrigins = [
         "https://sausage.saltbank.org",
         "https://i7l8qe.csb.app",
         "https://vau.money",
         "https://jwi5k.csb.app",
     ];
-    if (allowedOrigins.indexOf(origin) === -1) return JSON.stringify(`{error:${"no access for this origin- " + origin}}`);
+    if (allowedOrigins.indexOf(origin) === -1) return res.send(401, JSON.stringify(`{error:${"no access for this origin- " + origin}}`));
     const dataHead = {
         "Content-Type": "application/json"
     };
@@ -136,7 +137,7 @@ app.get('/', (req, res) => res.send("shove it"));
 app.post('/', (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     //res.send(200,"ok")
-    res.send(200,UseDependency());
+    res.send(200, UseDependency());
 });
 app.listen(port, () => console.log(`localhost:${port}`));
 
