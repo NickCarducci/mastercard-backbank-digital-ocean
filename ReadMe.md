@@ -168,7 +168,7 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 > cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && pm2 start [~~ecosystem.config.cjs~~](https://github.com/Unitech/pm2/issues/1976#issuecomment-1270533822) && pm2 logs --lines 350
 
 
-# export PATH=$PATH:node_modules/.bin
+# cd mastercard-backbank-digital-ocean && export PATH=$PATH:node_modules/.bin
 
 (`pm2 kill`)
 
