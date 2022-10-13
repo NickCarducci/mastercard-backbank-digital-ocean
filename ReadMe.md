@@ -1,4 +1,6 @@
-# [Wouldn't the best DDOS defense be a service that caches a request from the browser? Can the World Wide Web Consortium (W3C) enable this for the hypertext transfer flag for all methods from a certain device? Wouldn't this behest a convict intranet?](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/) Whose idea was it for browsers to not be forced cached on all methods of the hypertext transfer protocol?
+# nginx web app firewall vs perl config server firewall
+
+> [Wouldn't the best DDOS defense be a service that caches a request from the browser? Can the World Wide Web Consortium (W3C) enable this for the hypertext transfer flag for all methods from a certain device? Wouldn't this behest a convict intranet?](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/) Whose idea was it for browsers to not be forced cached on [all methods of the hypertext transfer protocol](https://www.linuxjournal.com/article/8706)?
 
 `npm install mastercard-locations --save`
 
