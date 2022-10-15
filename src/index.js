@@ -132,21 +132,23 @@ app/*.use((_req, _res, next) => {
     res.set("Content-Type", "Application/JSON");
     //res.send(200,"ok")
     next()
-})*/.get('/', (req, res) => res.status(200).send("shove it"))
-    //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
-    .options("/", (req, res) => {
-        var origin = req.headers.origin;
-        if (allowedOrigins.indexOf(origin) === -1) return res.send(401, `{error:${"no access for this origin- " + origin}}`);
-        //res.header("":_)
-        res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
-        res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
-        res.set("Content-Type", "Application/JSON");
-        //res.send(200,"ok")
-        res.sendStatus(204);
-    })
-    .post('/', (req, res) => {
-        //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
-        res.status(200).send("ok");
-        //res.send(200, UseDependency());
-    }).listen(port, () => console.log(`localhost:${port}`));
+})*/.get('/', (req, res) => res.status(200).send("shove it"));
+//https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
+app.options("/", (req, res) => {
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) === -1) return res.status(401).send(`{error:${"no access for this origin- " + origin}}`);
+    //res.header("":_)
+    res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
+    res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+    res.set("Content-Type", "Application/JSON");
+    //res.send(200,"ok")
+    res.status(204).send("ok");
+    res.sendStatus(204);
+});
+app.post('/', (req, res) => {
+    //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
+    res.status(200).send("ok");
+    //res.send(200, UseDependency());
+});
+app.listen(port, () => console.log(`localhost:${port}`));
 
