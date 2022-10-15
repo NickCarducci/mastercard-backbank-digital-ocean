@@ -147,7 +147,7 @@ v. `sudo nano /var/www/vault-co.in/html/index.html`
 
 (`sudo systemctl enable nginx.service`)
 
-vi. `sudo nano /etc/nginx/sites-available/vault-co.in`
+vi. `sudo nano /etc/nginx/sites-available/vault-co.in` [proxy](https://www.digitalocean.com/community/tutorials/understanding-nginx-http-proxying-load-balancing-buffering-and-caching)
 
 ````
 server {
@@ -159,7 +159,36 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         location ~ {
-                proxy_pass http://142.93.58.216:8080;
+                proxy_pass https://142.93.58.216:8080;
+                proxy_redirect https://142.93.58.216:8080/ https://$host;
+                proxy_set_header        X-Real-IP       $remote_addr;
+                proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /.well-known {
+            alias /var/www/validation/;
+        }
+
+        server_name vault-co.in www.vault-co.in;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+}
+````
+sudo rm -rf /etc/nginx/sites-enabled/ && sudo mkdir /etc/nginx/sites-enabled && sudo certbot --nginx -d vault-co.in -d [www.vault-co.in](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/)
+````
+
+server {
+
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/vault-co.in/html; # absolute path nginx vars
+        index index.html index.htm index.nginx-debian.html;
+
+        location ~ {
                 proxy_redirect https://142.93.58.216:8080/ https://$host;
         }
 
@@ -286,3 +315,5 @@ GS "merger fees" + Is the capitalization of a bank either more dependent on the 
 A natural normal
 
 ### [`sudo apt remove ufw`](https://www.cloudbooklet.com/how-to-secure-your-ubuntu-server-with-csf-firewall/)
+
+`sudo tail -n 10 /var/log/nginx/error.log`

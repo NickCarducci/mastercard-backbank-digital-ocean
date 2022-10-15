@@ -117,7 +117,6 @@ function UseDependency() {
 const app = express();
 const port = 8080;
 //http://johnzhang.io/options-request-in-express
-var origin = req.headers.origin;
 //var origin = req.get('origin');
 var allowedOrigins = [
     "https://sausage.saltbank.org",
@@ -136,6 +135,7 @@ app/*.use((_req, _res, next) => {
 })*/.get('/', (req, res) => res.send(200, "shove it"))
     //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
     .options("/", (req, res) => { 
+        var origin = req.headers.origin;
         if (allowedOrigins.indexOf(origin) === -1) return res.send(401, `{error:${"no access for this origin- " + origin}}`);
         //res.header("":_)
         res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
