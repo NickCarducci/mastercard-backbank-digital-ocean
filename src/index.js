@@ -83,6 +83,7 @@ app /*.use((_req, _res, next) => {
             oauthRSASHAPKCS1.consumerKey,//proess.env
             oauthRSASHAPKCS1.p12
         );
+        res.status(204).send(authHeader);
         fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
             headers: { "Content-Type": "Application/JSON", Authorization: authHeader }
             , body: JSON.stringify(req.body), method: "POST"

@@ -3,7 +3,7 @@
 [POSTHTTPS<path><query><protocol>.split("oauth_signature")[0]<body>](https://www.rfc-editor.org/rfc/rfc5849#section-3.4.1.3)
 
 "HMAC-SHA1" (client [key,token[credentials](https://www.rfc-editor.org/rfc/rfc5849#section-3.4.1.3.2)])
-"RSA-SHA1" (private [key,signature[PKCS#1](https://www.rfc-editor.org/rfc/rfc5849#section-3.4.3)])
+"RSA-SHA1" (private [key,certificate-signature[PKCS#1](https://www.rfc-editor.org/rfc/rfc5849#section-3.4.3)])
 "PLAINTEXT" (TLS/SSH)
 
 [test_get_authorization_header](https://github.com/Mastercard/oauth1-signer-ruby/blob/main/tests/test_oauth.rb)
@@ -14,7 +14,7 @@
 
 ~~`export p12=$(< file_to_be_read)`~~
 
-[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nodes -nocerts`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
+[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nokeys`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
 
 paste this into `src/oauthRSA-SHA-PKCS1.js\p12` instead of export environment with new lines
 
@@ -29,3 +29,5 @@ export default {
 }
 ````
 `git rm -r --cached .`
+
+`cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && sudo nano src/oauthRSA-SHA-PKCS.js && pm2 start src/index.js`
