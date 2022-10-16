@@ -78,7 +78,7 @@ app /*.use((_req, _res, next) => {
         const authHeader = oauth.getAuthorizationHeader(
             "https://sandbox.api.mastercard.com/atms/v1/atm",
             req.method,
-            req._data,
+            req.body,
             process.env.consumerKey,
             process.env.p12
         );
