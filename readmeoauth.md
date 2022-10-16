@@ -18,7 +18,7 @@
 
 paste this into `src/oauthRSA-SHA-PKCS1.js\p12` instead of export environment with new lines
 
-`src/oauthRSA-SHA-PKCS1.js`
+`sudo nano src/oauthRSA-SHA-PKCS1.js`
 ````
 const consumerKey = "";
 const p12 = "";
