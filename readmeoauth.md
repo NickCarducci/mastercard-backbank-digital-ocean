@@ -14,7 +14,7 @@
 
 ~~`export p12=$(< file_to_be_read)`~~
 
-[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nokeys`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
+[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nodes`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
 
 paste this into `src/oauthRSA-SHA-PKCS1.js\p12` instead of export environment with new lines
 
