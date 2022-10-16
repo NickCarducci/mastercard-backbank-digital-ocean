@@ -28,7 +28,7 @@ function UseDependency() {
     // Script-Name: atm_locations
     var MasterCardAPI = locations.MasterCardAPI;
     //var consumerKey = "your consumer key";   // You should copy this from "My Keys" on your project page e.g. UTfbhDCSeNYvJpLL5l028sWL9it739PYh6LU5lZja15xcRpY!fd209e6c579dc9d7be52da93d35ae6b6c167c174690b72fa
-    var keyStorePath = p12;// service worker envar "path to your .p12 private key file"; // e.g. /Users/yourname/project/sandbox.p12 | C:\Users\yourname\project\sandbox.p12
+    var keyStorePath = P12;// service worker envar "path to your .p12 private key file"; // e.g. /Users/yourname/project/sandbox.p12 | C:\Users\yourname\project\sandbox.p12
     var keyAlias = "keyalias";   // For production: change this to the key alias you chose when you created your production key
     var keyPassword = "keystorepassword";   // For production: change this to the key alias you chose when you created your production key
     // You only need to do initialize MasterCardAPI once
@@ -151,8 +151,8 @@ app/*.use((_req, _res, next) => {
     //res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
     res.set("Access-Control-Allow-Origin", origin);
-    res.status(200).send({data:"ok"});
-    //res.send(200, UseDependency());
+    //res.status(200).send({data:"ok"});
+    res.status(200).send(UseDependency());
 })
 .listen(port, () => console.log(`localhost:${port}`));
 
