@@ -74,7 +74,7 @@ app /*.use((_req, _res, next) => {
         res.set("Access-Control-Allow-Origin", origin);
         //res.status(200).send({data:"ok"});
 
-        res.status(204).send({error:process.env.test});
+        res.status(200).send({error:process.env.test});
         const authHeader = oauth.getAuthorizationHeader(
             req.url,
             req.method,
