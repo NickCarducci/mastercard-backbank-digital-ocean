@@ -1,4 +1,4 @@
 .github/
 rollup.config.js
 wrangler.toml
-src/oauthRSA-SHA-PKCS1.js
+src/oauthRSA-SHA-PKCS.js
