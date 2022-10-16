@@ -138,6 +138,7 @@ app/*.use((_req, _res, next) => {
     var origin = req.headers.origin;
     if (allowedOrigins.indexOf(origin) === -1) return res.status(401).send(`{error:${"no access for this origin- " + origin}}`);
     //res.header("":_)
+    res.set("Access-Control-Allow-Methods", "POST");
     res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
     res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
     res.set("Content-Type", "Application/JSON");
