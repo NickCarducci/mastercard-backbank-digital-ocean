@@ -147,7 +147,7 @@ app/*.use((_req, _res, next) => {
 })
 .post('/', (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
-    res.set("Content-Type", "Application/JSON");
+    //res.set("Content-Type", "Application/JSON");
     res.status(200).send({data:"ok"});
     //res.send(200, UseDependency());
 })
