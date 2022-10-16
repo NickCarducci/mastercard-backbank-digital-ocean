@@ -84,7 +84,7 @@ app /*.use((_req, _res, next) => {
         );
         fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
             headers: { "Content-Type": "Application/JSON", Authorization: authHeader }
-            , body: req.body, method: "POST"
+            , body: JSON.stringify(req.body), method: "POST"
         })
             .then(async res => await res.json())
             .then(data => {
