@@ -140,7 +140,7 @@ app/*.use((_req, _res, next) => {
     //res.header("":_)
     res.set("Access-Control-Allow-Methods", "POST, OPTIONS, GET");
     res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
-    res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
+    res.set("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Origin, Content-Type, Referer, Accept");
     res.set("Content-Type", "Application/JSON");
     //res.send(200,"ok")
     res.status(204).send({data:"ok"});
