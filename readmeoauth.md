@@ -28,3 +28,4 @@ export default {
     p12
 }
 ````
+`git rm -r --cached .`
