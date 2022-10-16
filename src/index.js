@@ -152,7 +152,7 @@ app/*.use((_req, _res, next) => {
     var origin = req.headers.origin;
     res.set("Access-Control-Allow-Origin", origin);
     //res.status(200).send({data:"ok"});
-    res.status(200).send(UseDependency());
+    res.status(200).send({data:UseDependency()});
 })
 .listen(port, () => console.log(`localhost:${port}`));
 
