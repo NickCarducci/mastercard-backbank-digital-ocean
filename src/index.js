@@ -67,13 +67,14 @@ app /*.use((_req, _res, next) => {
         res.status(204).send({ data: "ok" });
         //res.sendStatus(204);
     })
-    .post("/", async (req, res) => {
+    .post("/", (req, res) => {
         //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
         //res.set("Content-Type", "Application/JSON");
         var origin = req.headers.origin;
         res.set("Access-Control-Allow-Origin", origin);
         //res.status(200).send({data:"ok"});
 
+        res.status(204).send({error:process.env.test});
         const authHeader = oauth.getAuthorizationHeader(
             req.url,
             req.method,
@@ -90,7 +91,6 @@ app /*.use((_req, _res, next) => {
                 res.status(200).send(data);
             })
             .catch(er=>{
-
                 res.status(204).send(er);
             })
 
