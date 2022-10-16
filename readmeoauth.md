@@ -9,3 +9,22 @@
 [test_get_authorization_header](https://github.com/Mastercard/oauth1-signer-ruby/blob/main/tests/test_oauth.rb)
 
 >uri, method, nil, consumer_key, signing_key
+
+>~~[except in zsh, shell variables cannot store arbitrary](https://unix.stackexchange.com/questions/369972/how-can-i-set-an-environment-variable-which-contains-newline-characters) sequences of bytes~~
+
+~~`export p12=$(< file_to_be_read)`~~
+
+[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nodes -nocerts`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
+
+paste this into `src/oauthRSA-SHA-PKCS1.js\p12` instead of export environment with new lines
+
+`src/oauthRSA-SHA-PKCS1.js`
+````
+const consumerKey = "";
+const p12 = "";
+
+export default {
+    consumerKey,
+    p12
+}
+````
