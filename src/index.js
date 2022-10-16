@@ -142,13 +142,13 @@ app/*.use((_req, _res, next) => {
     res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
     res.set("Content-Type", "Application/JSON");
     //res.send(200,"ok")
-    res.status(204).send("ok");
+    res.status(204).send({data:"ok"});
     //res.sendStatus(204);
 })
 .post('/', (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
-    res.status(200).send("{data:ok}");
+    res.status(200).send({data:"ok"});
     //res.send(200, UseDependency());
 })
 .listen(port, () => console.log(`localhost:${port}`));
