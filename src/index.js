@@ -76,7 +76,7 @@ app /*.use((_req, _res, next) => {
 
         //res.status(200).send({error:process.env.test});
         const authHeader = oauth.getAuthorizationHeader(
-            req.url,
+            "https://sandbox.api.mastercard.com/atms/v1/atm",
             req.method,
             req._data,
             process.env.consumerKey,
