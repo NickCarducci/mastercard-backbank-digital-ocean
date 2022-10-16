@@ -91,3 +91,7 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 ~~`pm2 connection dynamic port`~~
 
 ~~pm2 ssh utc dynamic port`~~
+
+`sudo ufw allow 8080`
+
+`systemctl restart nginx && nginx -t`
