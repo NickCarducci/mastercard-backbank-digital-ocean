@@ -1,3 +1,4 @@
+const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS1.js")
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
 const express = require("express");
@@ -78,9 +79,9 @@ app /*.use((_req, _res, next) => {
         const authHeader = oauth.getAuthorizationHeader(
             "https://sandbox.api.mastercard.com/atms/v1/atm",
             req.method,
-            req.body,
-            process.env.consumerKey,
-            process.env.p12
+            req.body,//_data
+            oauthRSASHAPKCS1.consumerKey,//proess.env
+            oauthRSASHAPKCS1.p12
         );
         fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
             headers: { "Content-Type": "Application/JSON", Authorization: authHeader }
