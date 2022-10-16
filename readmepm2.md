@@ -94,4 +94,4 @@ a. `sudo apt install @babel/node` ~~`node-babel7`~~
 
 `sudo ufw allow 8080`
 
-`systemctl restart nginx && nginx -t`
+`systemctl restart nginx && sudo nginx -t`
