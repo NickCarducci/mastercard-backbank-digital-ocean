@@ -2,7 +2,7 @@ const consumerKey = "huh?"
 const p12 = `
 `;
 
-export default {
+module.exports = {
     consumerKey,
     p12
 }
