@@ -134,7 +134,6 @@ app /*.use((_req, _res, next) => {
     var status = 200, statusText = "defaultText";
     await fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
       headers: {
-        "Content-Type": "Application/JSON",
         Authorization: authHeader
       },
       body: JSON.stringify(req.body),
