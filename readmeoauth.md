@@ -1,3 +1,5 @@
+>To represent the encapsulated text of a PEM message, the encoding function's output is delimited into text lines (using local conventions), with each line except the last containing exactly 64 printable characters and the final line containing 64 or fewer printable [characters](https://serverfault.com/a/884930).
+
 ([how to node-forge p12 to](https://github.com/NickCarducci/mastercard-forge-pkcs-oauth-rsasha)):
 
 # Signature Base String - [oauth.net/core/1.0a/](https://oauth.net/core/1.0a/)
