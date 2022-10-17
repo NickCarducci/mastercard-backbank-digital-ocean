@@ -1,7 +1,20 @@
-const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js")
+const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js");
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
-const express = require("express");
+const express = require("express");/*
+const forge = require("node-forge");
+//const fs = require("fs"), p12Content = fs.readFileSync("<insert PKCS#12 key file path>", 'binary');
+
+const p12 = forge.pkcs12.pkcs12FromAsn1(
+  forge.asn1.fromDer(oauthRSASHAPKCS1.p12, false),
+  false,
+  "<insert key password>"
+);
+const keyObj = p12.getBags({
+  friendlyName: "<insert key alias>",
+  bagType: forge.pki.oids.pkcs8ShroudedKeyBag
+}).friendlyName[0];
+const signingKey = forge.pki.privateKeyToPem(keyObj.key);*/
 
 /*async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));
@@ -31,10 +44,10 @@ const port = 8080;
 //http://johnzhang.io/options-request-in-express
 //var origin = req.get('origin');
 var allowedOrigins = [
-    "https://sausage.saltbank.org",
-    "https://i7l8qe.csb.app",
-    "https://vau.money",
-    "https://jwi5k.csb.app"
+  "https://sausage.saltbank.org",
+  "https://i7l8qe.csb.app",
+  "https://vau.money",
+  "https://jwi5k.csb.app"
 ];
 app /*.use((_req, _res, next) => {
     if (allowedOrigins.indexOf(origin) === -1) return res.send(401, `{error:${"no access for this origin- " + origin}}`);
@@ -45,56 +58,68 @@ app /*.use((_req, _res, next) => {
     //res.send(200,"ok")
     next()
 })*/
-    .get("/", (req, res) => res.status(200).send("shove it"))
-    //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
-    .options("/", (req, res) => {
-        var origin = req.headers.origin;
-        if (allowedOrigins.indexOf(origin) === -1)
-            return res
-                .status(401)
-                .send(`{error:${"no access for this origin- " + origin}}`);
-        //res.header("":_)
-        res.set("Access-Control-Allow-Methods", "POST, OPTIONS, GET");
-        res.set(
-            "Access-Control-Allow-Origin",
-            allowedOrigins[allowedOrigins.indexOf(origin)]
-        );
-        res.set(
-            "Access-Control-Allow-Headers",
-            "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Origin, Content-Type, Referer, Accept"
-        );
-        res.set("Content-Type", "Application/JSON");
-        //res.send(200,"ok")
-        res.status(204).send({ data: "ok" });
-        //res.sendStatus(204);
-    })
-    .post("/", (req, res) => {
-        //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
-        res.set("Content-Type", "Application/JSON");
-        var origin = req.headers.origin;
-        res.set("Access-Control-Allow-Origin", origin);
-        //res.status(200).send({data:"ok"});
+  .get("/", (req, res) => res.status(200).send("shove it"))
+  //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
+  .options("/", (req, res) => {
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) === -1)
+      return res
+        .status(401)
+        .send(`{error:${"no access for this origin- " + origin}}`);
+    //res.header("":_)
+    res.set("Access-Control-Allow-Methods", "POST, OPTIONS, GET");
+    res.set(
+      "Access-Control-Allow-Origin",
+      allowedOrigins[allowedOrigins.indexOf(origin)]
+    );
+    res.set(
+      "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Origin, Access-Control-Allow-Methods, Origin, Content-Type, Referer, Accept"
+    );
+    res.set("Content-Type", "Application/JSON");
+    //res.send(200,"ok")
+    res.status(204).send({ data: "ok" });
+    //res.sendStatus(204);
+  })
+  .post("/", (req, res) => {
+    //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
+    res.set("Content-Type", "Application/JSON");
+    var origin = req.headers.origin;
+    res.set("Access-Control-Allow-Origin", origin);
+    //res.status(200).send({data:"ok"});
 
-        //res.status(200).send({error:process.env.test});
-        const authHeader = oauth.getAuthorizationHeader(
-            "https://sandbox.api.mastercard.com/atms/v1/atm",
-            req.method,
-            req.body,//_data
-            oauthRSASHAPKCS1.consumerKey,//proess.env
-            oauthRSASHAPKCS1.p12
-        );
-        //res.status(204).send(authHeader);
-        fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
-            headers: { "Content-Type": "Application/JSON", Authorization: authHeader }
-            , body: JSON.stringify(req.body), method: "POST"
-        })
-            .then(async res => await res.json())
-            .then(data => {
-                res.status(200).send(data);
-            })
-            .catch(er=>{
-                res.status(204).send(er);
-            })
+    /*const t = `METHOD&http%3A%2F%2Fsandbox.api.mastercard.com/atms/v1/atm        
+        %26oauth_consumer_key%3Ddpf43f3p2l4k3l03
+        %26oauth_nonce%3Dkllo9940pd9333jh
+        %26oauth_signature_method%3DHMAC-SHA1
+        %26oauth_timestamp%3D1191242096
+        %26oauth_token%3Dnnch734d00sl2jdk
+        %26oauth_version%3D1.0
+        %26size%3Doriginal`;*/
 
+    //res.status(200).send({error:process.env.test});
+    const authHeader = oauth.getAuthorizationHeader(
+      "https://sandbox.api.mastercard.com/atms/v1/atm",
+      req.method,
+      req.body, //_data
+      oauthRSASHAPKCS1.consumerKey, //proess.env
+      oauthRSASHAPKCS1.p12
+    );
+    //res.status(204).send(authHeader);
+    fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
+      headers: {
+        "Content-Type": "Application/JSON",
+        Authorization: authHeader
+      },
+      body: JSON.stringify(req.body),
+      method: "POST"
     })
-    .listen(port, () => console.log(`localhost:${port}`));
+      .then(async (res) => await res.json())
+      .then((data) => {
+        res.status(200).send(data);
+      })
+      .catch((er) => {
+        res.status(204).send(er);
+      });
+  })
+  .listen(port, () => console.log(`localhost:${port}`));

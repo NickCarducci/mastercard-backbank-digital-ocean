@@ -1,3 +1,5 @@
+([how to node-forge p12 to](https://github.com/NickCarducci/mastercard-forge-pkcs-oauth-rsasha)):
+
 # Signature Base String - [oauth.net/core/1.0a/](https://oauth.net/core/1.0a/)
 
 METHOD&http%3A%2F%2Fsandbox.api.mastercard.com/atms/v1/atm
