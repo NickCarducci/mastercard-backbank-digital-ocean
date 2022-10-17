@@ -16,6 +16,8 @@ METHOD&http%3A%2F%2Fsandbox.api.mastercard.com/atms/v1/atm
 
 METHOD&http%3A%2F%2Fsandbox.api.mastercard.com/atms/v1/atm&file%3Dvacation.jpg
 
+>sign certificate (sbs-uri) with private key
+
 ## ['signing'(Private)Key](https://github.com/Mastercard/oauth1-signer-ruby/blob/1187441f84b2eb07524cd1fc11f3be8e94e21609/lib/oauth.rb#L196), 'sbs'SignatureBase
 
 [oauth base string](https://stackoverflow.com/questions/8338661/implementation-hmac-sha1-in-python/8339781#8339781)

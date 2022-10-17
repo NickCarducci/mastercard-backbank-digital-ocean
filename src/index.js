@@ -1,7 +1,9 @@
 const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js");
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
-const express = require("express");/*
+const express = require("express");
+const fs = require("fs");
+const forge = require("node-forge"); /*
 const forge = require("node-forge");
 //const fs = require("fs"), p12Content = fs.readFileSync("<insert PKCS#12 key file path>", 'binary');
 
@@ -58,7 +60,7 @@ app /*.use((_req, _res, next) => {
     //res.send(200,"ok")
     next()
 })*/
-  .get("/", (req, res) => res.status(200).send("shove it"))
+  //.get("/", (req, res) => res.status(200).send("shove it"))
   //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
   .options("/", (req, res) => {
     var origin = req.headers.origin;
@@ -81,7 +83,7 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" });
     //res.sendStatus(204);
   })
-  .post("/", (req, res) => {
+  .get("/", (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
@@ -97,14 +99,35 @@ app /*.use((_req, _res, next) => {
         %26oauth_version%3D1.0
         %26size%3Doriginal`;*/
 
+    /*const p12Content = fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary');
+    const p12 = forge.pkcs12.pkcs12FromAsn1(
+        forge.asn1.fromDer(p12Content, false),
+        false,//https://github.com/NickCarducci/mastercard-forge-pkcs-oauth-rsasha
+        "Passwordlike"
+    );
+    const signingKey = forge.pki.privateKeyToPem(p12.getBags({
+        friendlyName: "Passwordlike",
+        bagType: forge.pki.oids.pkcs8ShroudedKeyBag
+    }).friendlyName[0].key);*/
+    var edit = oauthRSASHAPKCS1.p12;
+    edit = edit
+      .split("-----BEGIN RSA PRIVATE KEY-----")[1]
+      .split("-----END RSA PRIVATE KEY-----")[0];
+    edit =
+      "-----BEGIN RSA PRIVATE KEY-----" +
+      edit.replaceAll(" ", `\n`) +
+      "-----END RSA PRIVATE KEY-----";
+    //res.status(200).send(edit);
+    //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
     const authHeader = oauth.getAuthorizationHeader(
       "https://sandbox.api.mastercard.com/atms/v1/atm",
-      "POST",//req.method,
-      "",//req.body, //_data
+      "POST", //req.method,
+      "", //req.body, //_data
       oauthRSASHAPKCS1.consumerKey, //proess.env
-      oauthRSASHAPKCS1.p12
-    );
+      //fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary')
+      edit //signingKey//private ("signing"/reading) key
+    ); //Buffer.from(,'utf8)
     //res.status(204).send(authHeader);
     fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
       headers: {
