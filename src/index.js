@@ -18,8 +18,8 @@ const keyObj = p12.getBags({
 const signingKey = forge.pki.privateKeyToPem(keyObj.key);*/
 const fs = require("fs");
 const path = require("path");// /home/honcho/mastercard-backbankn-digital-ocean/src/
-const consumerKey = fs.readFileSync(path.join(__dirname, "/consumerKey"), 'binary');
-const p12 = fs.readFileSync(path.join(__dirname, "/p12"), 'binary');
+//const consumerKey = fs.readFileSync(path.join(__dirname, "/consumerKey"), 'binary');
+//const p12 = fs.readFileSync(path.join(__dirname, "/p12"), 'binary');
 /*async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));
     // boot instance, if necessary //https://<worker-name>.<your-namespace>.workers.dev/
@@ -112,6 +112,7 @@ app /*.use((_req, _res, next) => {
         bagType: forge.pki.oids.pkcs8ShroudedKeyBag
     }).friendlyName[0].key);*/
     var edit = process.env.p12;//oauthRSASHAPKCS1.p12;
+    res.status(200).send(edit);
     edit = edit
       .split("-----BEGIN RSA PRIVATE KEY-----")[1]
       .split("-----END RSA PRIVATE KEY-----")[0];
@@ -119,7 +120,6 @@ app /*.use((_req, _res, next) => {
       "-----BEGIN RSA PRIVATE KEY-----" +
       edit.replaceAll(" ", `\n`) +
       "-----END RSA PRIVATE KEY-----";
-    res.status(200).send(edit);
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
     const authHeader = oauth.getAuthorizationHeader(
