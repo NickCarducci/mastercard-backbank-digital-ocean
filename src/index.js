@@ -85,7 +85,7 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" });
     //res.sendStatus(204);
   })
-  .get("/", (req, res) => {
+  .get("/",async  (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
@@ -132,7 +132,7 @@ app /*.use((_req, _res, next) => {
     ); //Buffer.from(,'utf8)
     //res.status(204).send(authHeader);
     var status = 200, statusText = "defaultText";
-    fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
+    await fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
       headers: {
         "Content-Type": "Application/JSON",
         Authorization: authHeader
