@@ -99,14 +99,14 @@ app /*.use((_req, _res, next) => {
 
     //res.status(200).send({error:process.env.test});
     const authHeader = oauth.getAuthorizationHeader(
-      "https://sandbox.api.mastercard.com/atms/v1/atm/",
-      req.method,
-      req.body, //_data
+      "https://sandbox.api.mastercard.com/atms/v1/atm",
+      "POST",//req.method,
+      "",//req.body, //_data
       oauthRSASHAPKCS1.consumerKey, //proess.env
       oauthRSASHAPKCS1.p12
     );
     //res.status(204).send(authHeader);
-    fetch("https://sandbox.api.mastercard.com/atms/v1/atm/", {
+    fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
       headers: {
         "Content-Type": "Application/JSON",
         Authorization: authHeader
