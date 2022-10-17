@@ -118,7 +118,7 @@ app /*.use((_req, _res, next) => {
       .split("-----END RSA PRIVATE KEY-----")[0];
     edit =
       "-----BEGIN RSA PRIVATE KEY-----" +
-      edit.replaceAll(" ", `\n`) +
+      edit.replace(/ /g, `\n`) +
       "-----END RSA PRIVATE KEY-----";
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
