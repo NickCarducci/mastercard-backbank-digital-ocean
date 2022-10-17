@@ -136,8 +136,8 @@ app /*.use((_req, _res, next) => {
       headers: {
         Authorization: authHeader
       },
-      body: JSON.stringify(req.body),
-      method: "POST"
+      //body: JSON.stringify(req.body),
+      //method: "POST"
     })
       .then(async (res) => {
         statusText = res.statusText;
