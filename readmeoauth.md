@@ -59,3 +59,5 @@ export default {
 `cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && sudo nano src/oauthRSA-SHA-PKCS.js && pm2 start src/index.js`
 
 `cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && sudo nano src/consumerKey && sudo nano src/p12 && pm2 start src/index.js`
+
+`cd .. && rm -rf mastercard-backbank-digital-ocean && git clone https://github.com/NickCarducci/mastercard-backbank-digital-ocean.git && cd mastercard-backbank-digital-ocean && export p12= && export p12= && pm2 start src/index.js`
