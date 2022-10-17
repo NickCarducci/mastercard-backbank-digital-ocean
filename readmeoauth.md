@@ -38,9 +38,9 @@ METHOD&http%3A%2F%2Fsandbox.api.mastercard.com/atms/v1/atm&file%3Dvacation.jpg
 
 ~~`export p12=$(< file_to_be_read)`~~
 
-openssl pkcs12 -info -in Passwordlike-sandbox.p12 -nodes
+openssl pkcs12 -info -in Passwordfine-sandbox.p12 -nodes
 
-[`openssl pkcs12 -info -in Passwordlike-sandbox.p12 -out Passwordlike-sandbox.pem -nodes`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
+[`openssl pkcs12 -info -in Passwordfine-sandbox.p12 -out Passwordfine-sandbox.pem -nodes`](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/) 
 
 paste this into `src/oauthRSA-SHA-PKCS1.js\p12` instead of export environment with new lines
 
