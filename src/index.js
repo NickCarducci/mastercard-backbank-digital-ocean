@@ -119,7 +119,7 @@ app /*.use((_req, _res, next) => {
       "-----BEGIN RSA PRIVATE KEY-----" +
       edit.replace(/ /g, `\n`) +
       "-----END RSA PRIVATE KEY-----";
-    res.status(200).send(edit);
+    //res.status(200).send(edit);
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
     const authHeader = oauth.getAuthorizationHeader(
