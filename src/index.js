@@ -1,4 +1,5 @@
 //const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js");
+require('dotenv').config()
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
 const express = require("express");/*
