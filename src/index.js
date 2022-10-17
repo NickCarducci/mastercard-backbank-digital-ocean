@@ -118,9 +118,9 @@ app /*.use((_req, _res, next) => {
       "-----BEGIN RSA PRIVATE KEY-----" +
       edit.replaceAll(" ", `\n`) +
       "-----END RSA PRIVATE KEY-----";
+    res.status(200).send(edit);
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
-    res.status(200).send(edit);
     const authHeader = oauth.getAuthorizationHeader(
       "https://sandbox.api.mastercard.com/atms/v1/atm",
       "POST", //req.method,

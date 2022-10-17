@@ -5,3 +5,4 @@ src/notes/oauthRSA-SHA-PKCS.js
 src/consumerKey.js
 src/p12.js
 readmeoauthkeys.md
+.env
