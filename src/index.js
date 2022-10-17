@@ -60,7 +60,7 @@ app /*.use((_req, _res, next) => {
     //res.send(200,"ok")
     next()
 })*/
-  //.get("/", (req, res) => res.status(200).send("shove it"))
+  .get("/", (req, res) => res.status(200).send("shove it"))
   //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
   .options("/", (req, res) => {
     var origin = req.headers.origin;
@@ -83,7 +83,7 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" });
     //res.sendStatus(204);
   })
-  .get("/", (req, res) => {
+  .post("/", (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
