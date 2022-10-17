@@ -146,7 +146,7 @@ app /*.use((_req, _res, next) => {
         return await res.json()
       })
       .then((data) => {
-        res.status(status).send({ statusText, ...data });
+        res.status(200).send({ statusText,status, ...data });
       })
       .catch((er) => {
         res.status(402).send(er);
