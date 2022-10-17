@@ -1,4 +1,4 @@
-const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js");
+const oauthRSASHAPKCS1 = require("src/oauthRSA-SHA-PKCS.js");
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
 const express = require("express");/*
