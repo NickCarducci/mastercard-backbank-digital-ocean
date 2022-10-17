@@ -1,9 +1,7 @@
 const oauthRSASHAPKCS1 = require("./oauthRSA-SHA-PKCS.js");
 const fetch = require("node-fetch");
 const oauth = require("mastercard-oauth1-signer");
-const express = require("express");
-const fs = require("fs");
-const forge = require("node-forge"); /*
+const express = require("express");/*
 const forge = require("node-forge");
 //const fs = require("fs"), p12Content = fs.readFileSync("<insert PKCS#12 key file path>", 'binary');
 
