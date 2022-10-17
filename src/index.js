@@ -110,8 +110,7 @@ app /*.use((_req, _res, next) => {
         friendlyName: "Passwordlike",
         bagType: forge.pki.oids.pkcs8ShroudedKeyBag
     }).friendlyName[0].key);*/
-    var edit = p12;//oauthRSASHAPKCS1.p12;
-    //res.status(200).send(oauthRSASHAPKCS1);
+    var edit = process.env.p12;//oauthRSASHAPKCS1.p12;
     edit = edit
       .split("-----BEGIN RSA PRIVATE KEY-----")[1]
       .split("-----END RSA PRIVATE KEY-----")[0];
@@ -121,11 +120,12 @@ app /*.use((_req, _res, next) => {
       "-----END RSA PRIVATE KEY-----";
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
+    res.status(200).send(edit);
     const authHeader = oauth.getAuthorizationHeader(
       "https://sandbox.api.mastercard.com/atms/v1/atm",
       "POST", //req.method,
       "", //req.body, //_data
-      consumerKey,//oauthRSASHAPKCS1.consumerKey, //proess.env
+      process.env.consumerKey,//oauthRSASHAPKCS1.consumerKey,
       //fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary')
       edit //signingKey//private ("signing"/reading) key
     ); //Buffer.from(,'utf8)
