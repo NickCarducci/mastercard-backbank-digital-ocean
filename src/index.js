@@ -131,6 +131,7 @@ app /*.use((_req, _res, next) => {
       edit //signingKey//private ("signing"/reading) key
     ); //Buffer.from(,'utf8)
     //res.status(204).send(authHeader);
+    var status = 200;
     fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
       headers: {
         "Content-Type": "Application/JSON",
@@ -139,12 +140,14 @@ app /*.use((_req, _res, next) => {
       body: JSON.stringify(req.body),
       method: "POST"
     })
-      .then(async (res) => await res.json())
+      .then(async (res) => {
+        status = res.status;
+        return await res.json()})
       .then((data) => {
-        res.status(200).send(data);
+        res.status(status).send(data);
       })
       .catch((er) => {
-        res.status(204).send(er);
+        res.status(402).send(er);
       });
   })
   .listen(port, () => console.log(`localhost:${port}`));
