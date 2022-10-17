@@ -16,7 +16,7 @@ const keyObj = p12.getBags({
 }).friendlyName[0];
 const signingKey = forge.pki.privateKeyToPem(keyObj.key);*/
 const fs = require("fs");
-const oauthRSASHAPKCS1 = fs.readFileSync("src/oauthRSA-SHA-PKCS.js", 'binary');
+const oauthRSASHAPKCS1 = fs.readFileSync("./oauthRSA-SHA-PKCS.js", 'binary');
 /*async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));
     // boot instance, if necessary //https://<worker-name>.<your-namespace>.workers.dev/
