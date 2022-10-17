@@ -141,7 +141,7 @@ app /*.use((_req, _res, next) => {
       method: "POST"
     })
       .then(async (res) => {
-        statusText = res = statusText;
+        statusText = res.statusText;
         status = res.status;
         return await res.json()
       })
@@ -149,7 +149,7 @@ app /*.use((_req, _res, next) => {
         res.status(status).send({ statusText, ...data });
       })
       .catch((er) => {
-        res.status(402).send(er);
+        res.status(403).send(er);
       });
   })
   .listen(port, () => console.log(`localhost:${port}`));
