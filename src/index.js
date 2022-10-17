@@ -17,8 +17,8 @@ const keyObj = p12.getBags({
 const signingKey = forge.pki.privateKeyToPem(keyObj.key);*/
 const fs = require("fs");
 const path = require("path");// /home/honcho/mastercard-backbankn-digital-ocean/src/
-const consumerKey = fs.readFileSync(path.join(__dirname, "src/consumerKey"), 'binary');
-const p12 = fs.readFileSync(path.join(__dirname, "src/p12"), 'binary');
+const consumerKey = fs.readFileSync(path.join(__dirname, "/consumerKey"), 'binary');
+const p12 = fs.readFileSync(path.join(__dirname, "/p12"), 'binary');
 /*async function noException(req, env) {
     // key => Object ID; return new Response(JSON.stringify(backbank));
     // boot instance, if necessary //https://<worker-name>.<your-namespace>.workers.dev/
