@@ -85,7 +85,7 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" });
     //res.sendStatus(204);
   })
-  .post("/",async  (req, res) => {
+  .post("/", async (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
@@ -122,9 +122,10 @@ app /*.use((_req, _res, next) => {
     //res.status(200).send(edit);
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
+    const payload = "?" + Object.keys(req.body).map(x => x + "=" + req.body[x] + (i !== Object.keys(req.body).length ? "&" : ""))
     const authHeader = oauth.getAuthorizationHeader(
-      "https://sandbox.api.mastercard.com/atms/v1/atm",
-      "POST", //req.method,
+      "https://sandbox.api.mastercard.com/atms/v1/atm" + payload,
+      "GET", //req.method,
       "", //req.body, //_data
       process.env.consumerKey,//oauthRSASHAPKCS1.consumerKey,
       //fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary')
@@ -132,7 +133,7 @@ app /*.use((_req, _res, next) => {
     ); //Buffer.from(,'utf8)
     //res.status(204).send(authHeader);
     var status = 200, statusText = "defaultText";
-    await fetch("https://sandbox.api.mastercard.com/atms/v1/atm", {
+    await fetch("https://sandbox.api.mastercard.com/atms/v1/atm" + payload, {
       headers: {
         Authorization: authHeader
       },
