@@ -85,7 +85,7 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" });
     //res.sendStatus(204);
   })
-  .post("/", async (req, res) => {
+  .post("/", (req, res) => {
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
     var origin = req.headers.origin;
@@ -122,34 +122,48 @@ app /*.use((_req, _res, next) => {
     //res.status(200).send(edit);
     //res.status(200).send(fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary'))
     //res.status(200).send({error:process.env.test});
-    const payload = "?" + Object.keys(req.body).map(x => x + "=" + req.body[x] + (i !== Object.keys(req.body).length ? "&" : ""))
+    const body = req.body ? req.body : {
+      pageOffset: "1",
+      pageLength: "10",
+      postalCode: "07704"
+    };
+    var payload = "?" + Object.keys(body).map((x, i) => x + "=" + body[x] + (i !== Object.keys(body).length - 1 ? "&" : ""))
+    payload=payload.replace(/,/g, "")
+    //res.status(200).send(payload)
     const authHeader = oauth.getAuthorizationHeader(
       "https://sandbox.api.mastercard.com/atms/v1/atm" + payload,
       "GET", //req.method,
-      "", //req.body, //_data
+      null, //req.body, //_data
       process.env.consumerKey,//oauthRSASHAPKCS1.consumerKey,
       //fs.readFileSync("src/Passwordlike-sandbox.p12", 'binary')
       edit //signingKey//private ("signing"/reading) key
     ); //Buffer.from(,'utf8)
     //res.status(204).send(authHeader);
     var status = 200, statusText = "defaultText";
-    await fetch("https://sandbox.api.mastercard.com/atms/v1/atm" + payload, {
+    fetch("https://sandbox.api.mastercard.com/atms/v1/atm" + payload, {
       headers: {
-        Authorization: authHeader
+        //"Access-Control-Request-Headers":"accept",
+        Authorization: authHeader,
+        //Accept: "application/json",
       },
       //body: JSON.stringify(req.body),
       //method: "POST"
-    })
+    })//https://developer.mastercard.com/mastercard-send-funding/documentation/api-basics/#http-headers
       .then(async (res) => {
         statusText = res.statusText;
         status = res.status;
-        return await res.json()
+        //res.status(200).send(res)
+        /*var parser = new DOMParser();
+        var doc = parser.parseFromString(res, "text/html");
+        var html = JSON.stringify(doc.querySelector("pre").innerHTML);
+        console.log(html.substring(0, html.indexOf("<br>")));*/
+        return await res.text()
       })
       .then((data) => {
-        res.status(status).send({ statusText, ...data });
+        res.status(status).send(data);
       })
       .catch((er) => {
-        res.status(403).send(er);
+        res.status(405).send(er);
       });
   })
   .listen(port, () => console.log(`localhost:${port}`));
