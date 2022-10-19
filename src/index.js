@@ -297,7 +297,7 @@ app /*.use((_req, _res, next) => {
               Authorization: authHeader,
               Accept: "application/json"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(body),
             method: "POST"
           }
         ) //https://developer.mastercard.com/mastercard-send-funding/documentation/api-basics/#http-headers
