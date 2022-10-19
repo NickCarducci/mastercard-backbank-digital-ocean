@@ -213,7 +213,7 @@ app /*.use((_req, _res, next) => {
         return await res.text();
       })
       .then((data) => {
-        res.status(status).send({ statusText, ...data });
+        res.status(status).send({ statusText, data });
       })
       .catch((er) => {
         res.status(405).send(er);
@@ -307,7 +307,7 @@ app /*.use((_req, _res, next) => {
             return await res.text();
           })
           .then((data) => {
-            res.status(status).send({ statusText, ...data });
+            res.status(status).send({ statusText, data });
           })
           .catch((er) => {
             res.status(403).send(er);
