@@ -219,102 +219,112 @@ app /*.use((_req, _res, next) => {
         res.status(405).send(er);
       });
   })
-  .get("/", (req, res) => {
-    res.set("Content-Type", "Application/JSON");
-    var origin = req.headers.origin;
-    res.set("Access-Control-Allow-Origin", origin);
-    var { authHeader, payload, body } = serializeHeader(
-      "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards",
-      "POST",
-      JSON.stringify(
-        req.body
-          ? req.body
-          : {
-            "X-MC-Bank-Code": "112233",
-            "X-MC-Correlation-ID": "ac97d177-9345-4934-8343-0f91a7a02836",
-            "X-MC-Source": "MAP",
-            "X-MC-Client-Application-User-ID": "S0648-IN",
-            "X-MC-Idempotency-Key": "bc57d177-4593-3449-8343-0d81a7a02947"
-          }
-      )
-    );
-    var status = 200,
-      statusText = "defaultText"; //https://developer.mastercard.com/mdes-digital-enablement/documentation/api-reference/
-    //let api = new service.TokenizeApi();
-    //api.createTokenize
-    fetch("https://api.mastercard.com/mdes/digitization/static/1/0/tokenize", {
-      //tokenizeRequestSchema:
-      headers: {
-        "Content-Type": "application/json",
-        //"Access-Control-Request-Headers":"accept",
-        Authorization: authHeader,
-        Accept: "application/json"
-      },
-      body,
-      method: "POST"
-    })
-      .then(async (res) => {
-        statusText = res.statusText;
-        status = res.status;
-        return await res.text();
-      })
-      .then((data) => {
-        body = {
-          responseHost: "site1.your-server.com", //"vault-co.in"
-          tokenRequestorId: "98765432101",
-          tokenType: "CLOUD",
-          fundingAccountInfo: {
-            encryptedPayload: {
-              encryptedData: data
-            }
+  .get(
+    "/",
+    (
+      { authHeader, payload, body } = (req) =>
+        serializeHeader(
+          "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards",
+          "POST",
+          JSON.stringify(
+            req.body
+              ? req.body
+              : {
+                  "X-MC-Bank-Code": "112233",
+                  "X-MC-Correlation-ID": "ac97d177-9345-4934-8343-0f91a7a02836",
+                  "X-MC-Source": "MAP",
+                  "X-MC-Client-Application-User-ID": "S0648-IN",
+                  "X-MC-Idempotency-Key": "bc57d177-4593-3449-8343-0d81a7a02947"
+                }
+          )
+        ),
+      res = (r) => r.set("Content-Type", "Application/JSON")
+    ) => {
+      res.set("Access-Control-Allow-Origin", req.headers.origin);
+      body = JSON.stringify(body);
+      var statusText = "defaultText",
+        status = 200;
+      //https://developer.mastercard.com/mdes-digital-enablement/documentation/api-reference/
+      //let api = new service.TokenizeApi();api.createTokenize
+      fetch(
+        "https://api.mastercard.com/mdes/digitization/static/1/0/tokenize",
+        {
+          //tokenizeRequestSchema:
+          headers: {
+            "Content-Type": "application/json",
+            //"Access-Control-Request-Headers":"accept",
+            Authorization: authHeader,
+            Accept: "application/json"
           },
-          taskId: "123456",
-          consumerLanguage: "en",
-          tokenizationAuthenticationValue:
-            "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl",
-          requestId: "123456"
-        };
-        body["decisioningData"] = {
-          recommendation: "APPROVED",
-          recommendationAlgorithmVersion: "01",
-          deviceScore: "1",
-          accountScore: "1",
-          recommendationReasons: ["LONG_ACCOUNT_TENURE"],
-          deviceCurrentLocation: "38.63,-90.25",
-          deviceIpAddress: "127.0.0.1",
-          mobileNumberSuffix: 3456
-        };
-        body = JSON.stringify(body);
-        //(error, data, response) => {
-        //TokenizeResponseSchema https://github.com/Mastercard/mastercard-api-client-tutorial/tree/main/nodejs
-        fetch(
-          "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards" +
-          payload,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              //"Access-Control-Request-Headers":"accept",
-              Authorization: authHeader,
-              Accept: "application/json"
-            },
-            body: JSON.stringify(body),
-            method: "POST"
+          body,
+          method: "POST"
+        }
+      )
+        .then(async (res) => {
+          statusText = res.statusText;
+          status = res.status;
+          return { encryptedData: await res.text() };
+        })
+        .then(
+          (
+            fundingAccountInfo = (encryptedPayload) => {
+              encryptedPayload;
+            }
+          ) => {
+            body = {
+              responseHost: "site1.your-server.com", //"vault-co.in"
+              tokenRequestorId: "98765432101",
+              tokenType: "CLOUD",
+              fundingAccountInfo,
+              taskId: "123456",
+              consumerLanguage: "en",
+              tokenizationAuthenticationValue:
+                "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl",
+              requestId: "123456"
+            };
+            body["decisioningData"] = {
+              recommendation: "APPROVED",
+              recommendationAlgorithmVersion: "01",
+              deviceScore: "1",
+              accountScore: "1",
+              recommendationReasons: ["LONG_ACCOUNT_TENURE"],
+              deviceCurrentLocation: "38.63,-90.25",
+              deviceIpAddress: "127.0.0.1",
+              mobileNumberSuffix: 3456
+            };
+            body = JSON.stringify(body);
+            //(error, data, response) => {
+            //TokenizeResponseSchema https://github.com/Mastercard/mastercard-api-client-tutorial/tree/main/nodejs
+            fetch(
+              "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards" +
+                payload,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  //"Access-Control-Request-Headers":"accept",
+                  Authorization: authHeader,
+                  Accept: "application/json"
+                },
+                body,
+                method: "POST"
+              }
+            ) //https://developer.mastercard.com/mastercard-send-funding/documentation/api-basics/#http-headers
+              .then(async (res) => {
+                statusText = res.statusText;
+                status = res.status;
+                return await res.text();
+              })
+              .then((data) => {
+                res.status(status).send({ statusText, data });
+              })
+              .catch((er) => {
+                res.status(403).send(er);
+              });
           }
-        ) //https://developer.mastercard.com/mastercard-send-funding/documentation/api-basics/#http-headers
-          .then(async (res) => {
-            statusText = res.statusText;
-            status = res.status;
-            return await res.text();
-          })
-          .then((data) => {
-            res.status(status).send({ statusText, data });
-          })
-          .catch((er) => {
-            res.status(403).send(er);
-          });
-      })
-      .catch((er) => {
-        res.status(401).send(er);
-      });
-  })
+        )
+        .catch((er) => {
+          res.status(401).send(er);
+        });
+    }
+  )
   .listen(port, () => console.log(`localhost:${port}`));

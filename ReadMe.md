@@ -1,3 +1,5 @@
+>Look, ma! I'm a bank! (OCC BIN.6 TRANSACTION SWIFT ORDER BIC.8)
+
 # [Using Caching to Smooth Traffic Spikes](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
 
 ## nginx web app firewall vs perl config server firewall
@@ -243,6 +245,8 @@ server {
     return 404; # managed by Certbot
 }
 ````
+(`sudo rm -rf /etc/nginx/sites-enabled/ && sudo mkdir /etc/nginx/sites-enabled && sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/ && sudo systemctl restart nginx`)
+
 vii. `sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/`
 
 viii. `sudo nano /etc/nginx/nginx.conf`
@@ -273,6 +277,8 @@ xii. `sudo certbot --nginx -d vault-co.in -d www.vault-co.in`
 `systemctl status nginx`
 
 `systemctl start nginx`
+
+`systemctl stop nginx`
 
 `sudo journalctl -xeu nginx.service`
 
