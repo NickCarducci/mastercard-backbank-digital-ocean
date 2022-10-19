@@ -245,6 +245,8 @@ server {
     return 404; # managed by Certbot
 }
 ````
+(`sudo nano /etc/nginx/sites-available/vault-co.in`)
+
 (`sudo rm -rf /etc/nginx/sites-enabled/ && sudo mkdir /etc/nginx/sites-enabled && sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/ && sudo systemctl restart nginx`)
 
 vii. `sudo ln -s /etc/nginx/sites-available/vault-co.in /etc/nginx/sites-enabled/`
