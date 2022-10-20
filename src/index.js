@@ -222,7 +222,10 @@ app /*.use((_req, _res, next) => {
   .get(
     "/",
     (
-      { authHeader, payload, body } = (req) =>
+      req,
+      res
+    ) => {
+      var { authHeader, payload, body } =
         serializeHeader(
           "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards",
           "POST",
@@ -230,16 +233,15 @@ app /*.use((_req, _res, next) => {
             req.body
               ? req.body
               : {
-                  "X-MC-Bank-Code": "112233",
-                  "X-MC-Correlation-ID": "ac97d177-9345-4934-8343-0f91a7a02836",
-                  "X-MC-Source": "MAP",
-                  "X-MC-Client-Application-User-ID": "S0648-IN",
-                  "X-MC-Idempotency-Key": "bc57d177-4593-3449-8343-0d81a7a02947"
-                }
+                "X-MC-Bank-Code": "112233",
+                "X-MC-Correlation-ID": "ac97d177-9345-4934-8343-0f91a7a02836",
+                "X-MC-Source": "MAP",
+                "X-MC-Client-Application-User-ID": "S0648-IN",
+                "X-MC-Idempotency-Key": "bc57d177-4593-3449-8343-0d81a7a02947"
+              }
           )
-        ),
-      res = (r) => r.set("Content-Type", "Application/JSON")
-    ) => {
+        )
+      res.set("Content-Type", "Application/JSON");
       res.set("Access-Control-Allow-Origin", req.headers.origin);
       body = JSON.stringify(body);
       var statusText = "defaultText",
@@ -296,8 +298,7 @@ app /*.use((_req, _res, next) => {
             //(error, data, response) => {
             //TokenizeResponseSchema https://github.com/Mastercard/mastercard-api-client-tutorial/tree/main/nodejs
             fetch(
-              "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards" +
-                payload,
+              "https://sandbox.mi.api.mastercard.com/mi-issuing-sandbox/card-issuance/prepaid-cards",// +payload,
               {
                 headers: {
                   "Content-Type": "application/json",
