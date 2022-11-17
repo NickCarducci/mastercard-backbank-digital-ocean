@@ -1,4 +1,4 @@
->Look, ma! I'm a bank! (OCC BIN.6 TRANSACTION SWIFT ORDER BIC.8)
+>*Look, ma!* I'm a bank! (OCC BIN.6 TRANSACTION SWIFT ORDER BIC.8 - *12.1.5*, or [snipcart (credit)](https://github.com/NickCarducci/vaumoney/blob/maintenance/src/Authentication/Links/index.js))
 
 # [Using Caching to Smooth Traffic Spikes](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
 

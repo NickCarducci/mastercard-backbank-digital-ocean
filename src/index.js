@@ -139,7 +139,7 @@ app /*.use((_req, _res, next) => {
     res.set("Access-Control-Allow-Origin", allowedOrigins[allowedOrigins.indexOf(origin)]);
     res.set("Access-Control-Allow-Headers", "Origin, Content-Type, Referer, Accept");
     res.set("Content-Type", "Application/JSON");next()})*/
-  //.get("/", (req, res) => res.status(200).send("shove it"))
+  .get("/", (req, res) => res.status(200).send("shove it"))
   .options("/", (req, res) => {
     var origin = req.headers.origin; //https://stackoverflow.com/questions/36554375/getting-the-request-origin-in-express
     if (allowedOrigins.indexOf(origin) === -1)
@@ -160,6 +160,14 @@ app /*.use((_req, _res, next) => {
     res.status(204).send({ data: "ok" }); //res.sendStatus(204);
   })
   .post("/", (req, res) => {
+    res.set("Content-Type", "Application/JSON");
+    var origin = req.headers.origin;
+    res.set("Access-Control-Allow-Origin", origin);
+    var status = 200,
+      statusText = "defaultText";
+    res.status(status).send({ statusText, data });
+  })
+  .post("/lookup/atm", (req, res) => {
     //res.status(200).send({data:"ok"});
     //if (request.method === "OPTIONS")return res.send(`preflight response for POST`);
     res.set("Content-Type", "Application/JSON");
@@ -218,9 +226,81 @@ app /*.use((_req, _res, next) => {
       .catch((er) => {
         res.status(405).send(er);
       });
-  })
-  .get(
-    "/",
+  })//try_files $uri $uri/ =404;
+  //With this directive nginx tries to serve a static file (or directory),
+  //and returns 404 if there is no such file.
+  //https://docs.snipcart.com/v3/api-reference/customers - service node
+  //https://docs.snipcart.com/v3/sdk/api - client js (no private key)
+  //cart, items, customer, theme
+  //no DOM? - https://docs.snipcart.com/v3/sdk/reference#contexts-SnipcartDefaultContext-initializeDefaultContext
+  //initializeBrowserContext: publicKey, domobj, {exportGlobal:true}
+  //insertPaymentForm: nodeobj, (config?) - https://docs.snipcart.com/v3/sdk/reference#contexts-browser-browserApi-PaymentFormAPI
+  .post(
+    "/cart/transaction", (
+      req,
+      res
+    ) => {
+      res.set("Content-Type", "Application/JSON");
+      res.set("Access-Control-Allow-Origin", req.headers.origin);
+      body = JSON.stringify(body);
+      //https://github.com/lwhiteley/node-snipcart-api/blob/master/lib/api/methods/index.js
+      //https://github.com/lwhiteley/node-snipcart-api/blob/master/lib/config/index.js
+      //orders, discounts, subscriptions
+      //orders/{token}/notifications
+      fetch(`https://app.snipcart.com/api`, {
+        //SECRET_API_KEY: process.env.SECRET_API_KEY,
+        headers: {
+          Authorization: `Bearer ${snipcartkey}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(async (res) => {
+        statusText = res.statusText;
+        status = res.status;
+        return await res.json();
+      })
+        .then((data) => {
+          res.status(status).send({ statusText, data });
+        })
+        .catch((er) => {
+          res.status(401).send(er);
+        });
+    }
+  )
+  .post(
+    "/cart/withdrawal", (
+      req,
+      res
+    ) => {
+      res.set("Content-Type", "Application/JSON");
+      res.set("Access-Control-Allow-Origin", req.headers.origin);
+      body = JSON.stringify(body);
+      //https://github.com/lwhiteley/node-snipcart-api/blob/master/lib/api/methods/index.js
+      //https://github.com/lwhiteley/node-snipcart-api/blob/master/lib/config/index.js
+      //orders, discounts, subscriptions
+      //orders/{token}/notifications
+      fetch(`https://app.snipcart.com/api`, {
+        //SECRET_API_KEY: process.env.SECRET_API_KEY,
+        headers: {
+          Authorization: `Bearer ${snipcartkey}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }).then(async (res) => {
+        statusText = res.statusText;
+        status = res.status;
+        return await res.json();
+      })
+        .then((data) => {
+          res.status(status).send({ statusText, data });
+        })
+        .catch((er) => {
+          res.status(401).send(er);
+        });
+    }
+  )//"you got enough for everybody?" the man says to the boy, who replies yea
+  .post(
+    "/card/issue",
     (
       req,
       res
