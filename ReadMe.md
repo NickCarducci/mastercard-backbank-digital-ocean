@@ -298,6 +298,7 @@ exclusion cheat fraud [chance](https://stackoverflow.com/a/13909534/11711280)
 
 sudo certbot --nginx -d vault-co.in -d www.vault-co.in
 
+(login recovery console)
 vaumoney: root
 password: _
 sudo ufw disable
